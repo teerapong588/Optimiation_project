@@ -12,4 +12,9 @@ using("quantmod"
       ,"magrittr"
       ,"xts"
       ,"PerformanceAnalytics"
-      ,"fPortfolio")
+      ,"fPortfolio"
+      ,"RSelenium"
+      ,"rvest"
+      ,"XML"
+      ,"foreach"
+      ,"dplyr")
