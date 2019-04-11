@@ -17,4 +17,8 @@ using("quantmod"
       ,"rvest"
       ,"XML"
       ,"foreach"
-      ,"dplyr")
+      ,"dplyr"
+      ,"fBasics"
+      ,"ggplot2"
+      ,"reshape2"
+      ,"wesanderson")

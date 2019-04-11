@@ -87,7 +87,7 @@ xts_daily_nav <- xts(daily_nav, order.by = as.Date(daily_nav$Date, format="%d/%m
 # Change data type from Character to Double
 storage.mode(xts_daily_nav) <- "double"
 
-# Check result from a csv file
+# Check results from a csv file
 write.csv(daily_nav, file = "daily_nav.csv")
 
 # Compute daily return
@@ -98,6 +98,9 @@ xts_monthly_nav <- to.monthly(xts_daily_nav, indexAt = "last", OHLC = FALSE)
 
 # Compute monthly return
 monthly_log_ret      <- Return.calculate(xts_monthly_nav, method = "log")[-1,]
+
+# Check results from a csv file
+write.csv(monthly_log_ret, file = "monthly_log_ret.csv")
 
 
 
