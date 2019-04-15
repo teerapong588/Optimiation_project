@@ -17,7 +17,7 @@ fprof <- makeFirefoxProfile(list(
 )
 
 gc()
-rD             <- rsDriver(port = 4445L, browser = "firefox"
+rD             <- rsDriver(port = 4444L, browser = "firefox"
                            ,version = "latest", chromever = "latest"
                            ,extraCapabilities = fprof
                            ,verbose = T, check = TRUE)
@@ -28,10 +28,10 @@ remDr          <- rD[["client"]]
 # Needed funds
 
 funds <- c("TMBTM","SCBTMFPLUS","KFMTFI","TMBGF"
-  ,"KF-CINCOME","SCBSETFUND","ABG","ABSL","ABSM"
-  ,"JB25","ABWOOF")
+  ,"KF-CINCOME","SCBSETFUND", "JB25","ABG","ABSL","ABSM"
+  ,"SCBSEFUND","ABWOOF","PHATRA GNP", "TMBUS500")
 
-# funds <- c("ABG","ABSL")
+# funds <- c("TMBTM","SCBTMFPLUS")
 
 begin_year <- "2556"
 
@@ -52,16 +52,16 @@ nav_dat <- foreach (fund = funds, .verbose = T ) %do% {
   date_path <- "//tr[@bgcolor = '#F2F2F2']/td[@class='table1'][1]"
   date <- xpathSApply(doc, date_path, xmlValue) %>%
     as.matrix() %>%
-    as.data.frame() %>%
-    as.Date(format="%d%m%Y")
+    as.data.frame()
   names(date) <- "Date"
   
   nav_path <- "//tr[@bgcolor = '#F2F2F2']/td[3]"
   nav <- xpathSApply(doc, nav_path, xmlValue) %>% as.matrix() %>% as.data.frame()
   names(nav) <- fund
   
-  output <- cbind(date, nav)
-  
+  comb_dat <- cbind(date, nav)
+  comb_dat$Date <- comb_dat$Date %>% as.Date(format="%d/%m/%Y")
+  output <- comb_dat
 }
 
 # Merge all scraped data

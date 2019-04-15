@@ -21,4 +21,7 @@ using("quantmod"
       ,"fBasics"
       ,"ggplot2"
       ,"reshape2"
-      ,"wesanderson")
+      ,"wesanderson"
+      ,"corrplot"
+      ,"shiny"
+      ,"shinydashboard")
