@@ -24,4 +24,7 @@ using("quantmod"
       ,"wesanderson"
       ,"corrplot"
       ,"shiny"
-      ,"shinydashboard")
+      ,"shinydashboard"
+      ,"R.utils"
+      ,"robustbase"
+      ,"timeSeries")

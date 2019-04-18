@@ -102,6 +102,7 @@ monthly_log_ret      <- Return.calculate(xts_monthly_nav, method = "log")[-1,]
 # Check results from a csv file
 write.csv(monthly_log_ret, file = "monthly_log_ret.csv")
 
+save(monthly_log_ret, file="monthly_log_ret.Rdata")
 
 
 

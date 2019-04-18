@@ -1,5 +1,10 @@
-source("side_tab.R", local = TRUE)
-source("Tabs.R", local = TRUE)
+source("bs_tabs.R", local = TRUE)
+source("mv_td_tabs.R", local = TRUE)
+source("mv_rb_kde_tabs.R", local = TRUE)
+source("mv_rb_spe_tabs.R", local = TRUE)
+source("mv_rb_covmcd_tabs.R", local = TRUE)
+source("mv_rb_sre_tabs.R", local = TRUE)
+source("mcv_tabs.R", local = TRUE)
 
 Header <- dashboardHeader(title = "Portfolio Optimization")
 
@@ -8,9 +13,10 @@ Sidebar <- dashboardSidebar(
       menuItem("Basic Statistics", tabName = "basic_stats"),
       menuItem("Mean-Variance", tabName = "two",
                menuSubItem(text = "Traditional", tabName = "traditional"),
-               menuSubItem(text = "Robust", tabName = "robust"),
-               menuSubItem(text = "Shrinkage", tabName = "shrinkage"),
-               menuSubItem(text = "Bagging", tabName = "bagging")
+               menuSubItem(text = "Kendall Estimator", tabName = "rb_kde"),
+               menuSubItem(text = "Spearman Estimator", tabName = "rb_spe"),
+               menuSubItem(text = "CovMcd Estimator", tabName = "rb_covmcd"),
+               menuSubItem(text = "Shrinkage Estimator", tabName = "rb_sre")
                ),
       menuItem("Mean-Cvar", tabName = "mean-cvar"),
       menuItem("Back Testing", tabName = "backtesting",
@@ -25,23 +31,14 @@ Sidebar <- dashboardSidebar(
 Body <- dashboardBody(
   tabItems(
     #linked tabs from Tabs.R
-    tabItem(tabName = "basic_stats",
-            tabsetPanel(bs_tab1,
-                        bs_tab2,
-                        bs_tab3,
-                        bs_tab4,
-                        bs_tab5)),
-    tabItem(tabName = "traditional",
-            tabsetPanel(mv_td_tab1,
-                        mv_td_tab2,
-                        mv_td_tab3,
-                        mv_td_tab4,
-                        mv_td_tab5,
-                        mv_td_tab6)),
-    tabItem(tabName = "robust", h2("Robust")),
-    tabItem(tabName = "shrinkage", h2("Shrinkage")),
+    tabItem(tabName = "basic_stats", bs_tabs),
+    tabItem(tabName = "traditional", mv_td_tabs),
+    tabItem(tabName = "rb_kde", mv_rd_kde_tabs),
+    tabItem(tabName = "rb_spe", mv_rd_spe_tabs),
+    tabItem(tabName = "rb_covmcd", mv_rd_covmcd_tabs),
+    tabItem(tabName = "rb_sre", mv_rd_sre_tabs),
     tabItem(tabName = "bagging", h2("Bagging")),
-    tabItem(tabName = "mean-cvar", h2("Mean-Cvar")),
+    tabItem(tabName = "mean-cvar", mcv_tabs),
     tabItem(tabName = "bt-traditional", h2("BT-Traditional")),
     tabItem(tabName = "bt-robust", h2("BT-Robust")),
     tabItem(tabName = "bt-shrinkage", h2("BT-Shrinkage")),
